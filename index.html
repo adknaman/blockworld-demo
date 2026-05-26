@@ -3,253 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roblox</title>
+<title>Roblox Admin Login</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
 body{
-  margin:0;
-  font-family:Arial;
-  background:#121212;
-  color:white;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0f0f0f;
+    color:white;
 }
 
-/* TOP BAR (ROBLOX STYLE) */
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 20px;
-  background:#1f1f1f;
-  position:sticky;
-  top:0;
-  border-bottom:1px solid #333;
+.container{
+    background:#1e1e1e;
+    padding:30px;
+    border-radius:12px;
+    width:360px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
 
-/* LOGO */
 .logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:bold;
-  cursor:pointer;
+    width:180px;
+    margin-bottom:20px;
 }
 
-.logo img{
-  height:32px;
-}
-
-/* NAV BUTTONS */
-.nav{
-  display:flex;
-  gap:10px;
-}
-
-.nav button{
-  background:#2a2a2a;
-  border:none;
-  color:white;
-  padding:8px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.nav button:hover{
-  background:#3a3a3a;
-}
-
-/* HERO */
-.hero{
-  text-align:center;
-  padding:60px;
-}
-
-.hero h1{
-  font-size:40px;
-}
-
-/* LOGIN MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.7);
-  justify-content:center;
-  align-items:center;
-}
-
-.modal-content{
-  background:#222;
-  padding:20px;
-  border-radius:10px;
-  width:300px;
+h1{
+    margin-bottom:20px;
 }
 
 input{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border:none;
-  border-radius:5px;
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    background:#2d2d2d;
+    color:white;
+    font-size:16px;
 }
 
-/* BUTTON STYLE (ROBLOX LIKE) */
-.btn{
-  background:#00a2ff;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:6px;
-  cursor:pointer;
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#0078ff;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-.btn:hover{
-  background:#008ad6;
+button:hover{
+    background:#005fd1;
 }
 
-/* PROFILE BOX */
-.box{
-  margin:20px;
-  padding:15px;
-  background:#1e1e1e;
-  border-radius:10px;
+#adminPanel{
+    display:none;
 }
 
-/* ADMIN */
-.admin{
-  margin:20px;
-  padding:15px;
-  background:#111;
-  border:1px solid #333;
-  border-radius:10px;
+.command-list{
+    margin-top:20px;
+    text-align:left;
+    background:#2a2a2a;
+    padding:15px;
+    border-radius:8px;
+}
+
+.command-list p{
+    margin:5px 0;
+}
+
+.saved-data{
+    margin-top:20px;
+    text-align:left;
+    background:#2a2a2a;
+    padding:15px;
+    border-radius:8px;
+}
+
+#message{
+    margin-top:15px;
+    color:#ff4d4d;
+}
+
+#result{
+    margin-top:15px;
+    color:#00ff99;
 }
 </style>
-
 </head>
-
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
+<!-- LOGIN -->
+<div class="container" id="loginBox">
 
-  <div class="logo" onclick="home()">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Roblox_%282025%29_%28App_Icon%29.svg/500px-Roblox_%282025%29_%28App_Icon%29.svg.png">
-    <span>Roblox</span>
-  </div>
+    <img 
+    class="logo"
+    src="https://upload.wikimedia.org/wikipedia/commons/4/48/Roblox_Logo_2021.png?_=20211127162044"
+    alt="Roblox Logo">
 
-  <div class="nav">
-    <button onclick="home()">Home</button>
-    <button onclick="showProfile()">Profile</button>
-    <button id="adminBtn" style="display:none" onclick="showAdmin()">Admin</button>
-    <button onclick="openLogin()">Login</button>
-  </div>
+    <h1>Login</h1>
 
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Log In</button>
+
+    <p id="message"></p>
 </div>
 
-<!-- HERO -->
-<div class="hero" id="home">
-  <h1>Welcome</h1>
-</div>
+<!-- ADMIN PANEL -->
+<div class="container" id="adminPanel">
 
-<!-- PROFILE -->
-<div class="box" id="profile" style="display:none;">
-  <h3>Profile</h3>
-  <div id="profileBox">No user logged in</div>
-</div>
+    <img 
+    class="logo"
+    src="https://upload.wikimedia.org/wikipedia/commons/4/48/Roblox_Logo_2021.png?_=20211127162044"
+    alt="Roblox Logo">
 
-<!-- ADMIN -->
-<div class="admin" id="admin" style="display:none;">
-  <h3>Admin Panel</h3>
-  <div id="adminBox"></div>
-</div>
+    <h1>Admin Panel</h1>
 
-<!-- LOGIN MODAL -->
-<div class="modal" id="loginModal">
-<div class="modal-content">
+    <p>Welcome Admin!</p>
 
-<h3>Login</h3>
+    <input type="text" id="commandInput" placeholder="Enter command">
 
-<input id="username" placeholder="Username">
-<input id="password" type="password" placeholder="Password">
+    <button onclick="runCommand()">Run Command</button>
 
-<button class="btn" onclick="login()">Login</button>
-<button onclick="closeLogin()">Close</button>
+    <div class="command-list">
+        <h3>Available Commands</h3>
+        <p>kick</p>
+        <p>ban</p>
+        <p>shutdown</p>
+    </div>
 
-</div>
+    <div class="saved-data">
+        <h3>Saved Login Data</h3>
+        <p id="savedUser"></p>
+        <p id="savedPass"></p>
+    </div>
+
+    <p id="result"></p>
+
 </div>
 
 <script>
 
-function home(){
-  document.getElementById("home").scrollIntoView();
-}
+// Load Saved Data
+window.onload = function(){
 
-function openLogin(){
-  document.getElementById("loginModal").style.display="flex";
-}
+    const savedUser = localStorage.getItem("savedUsername");
+    const savedPass = localStorage.getItem("savedPassword");
 
-function closeLogin(){
-  document.getElementById("loginModal").style.display="none";
-}
+    if(savedUser){
+        document.getElementById("savedUser").innerText =
+        "Username: " + savedUser;
+    }
 
-/* LOGIN */
+    if(savedPass){
+        document.getElementById("savedPass").innerText =
+        "Password: " + savedPass;
+    }
+};
+
+// Login System
 function login(){
 
-  let u=document.getElementById("username").value;
-  let p=document.getElementById("password").value;
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
 
-  if(!u || !p){
-    alert("Fill all fields");
-    return;
-  }
+    // Save Data To Local Storage
+    localStorage.setItem("savedUsername", user);
+    localStorage.setItem("savedPassword", pass);
 
-  localStorage.setItem("userData",JSON.stringify({username:u,password:p}));
+    // Admin Login
+    if(user === "naman" && pass === "naman"){
 
-  closeLogin();
-  showProfile();
-  checkAdmin(u,p);
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+
+        document.getElementById("savedUser").innerText =
+        "Username: " + user;
+
+        document.getElementById("savedPass").innerText =
+        "Password: " + pass;
+
+    } else {
+
+        document.getElementById("message").innerText =
+        "Invalid Username or Password";
+    }
 }
 
-/* PROFILE */
-function showProfile(){
+// Command System
+function runCommand(){
 
-  let data=JSON.parse(localStorage.getItem("userData"));
+    const cmd = document.getElementById("commandInput").value.toLowerCase();
+    const result = document.getElementById("result");
 
-  if(!data){
-    document.getElementById("profile").style.display="block";
-    document.getElementById("profileBox").innerHTML="No user logged in";
-    return;
-  }
-
-  document.getElementById("profile").style.display="block";
-
-  document.getElementById("profileBox").innerHTML=
-  "Username: "+data.username;
+    if(cmd === "kick"){
+        result.innerText = "Player kicked successfully!";
+    }
+    else if(cmd === "ban"){
+        result.innerText = "Player banned successfully!";
+    }
+    else if(cmd === "shutdown"){
+        result.innerText = "Server shutting down...";
+    }
+    else{
+        result.innerText = "Unknown command!";
+    }
 }
-
-/* ADMIN */
-function checkAdmin(u,p){
-
-  if(u==="naman" && p==="naman"){
-    document.getElementById("admin").style.display="block";
-    document.getElementById("adminBtn").style.display="inline";
-
-    document.getElementById("adminBox").innerHTML=
-    "Welcome Admin Naman 👑";
-  }
-}
-
-function showAdmin(){
-  document.getElementById("admin").style.display="block";
-}
-
-/* LOAD */
-window.onload=function(){
-  let data=JSON.parse(localStorage.getItem("userData"));
-  if(data){
-    showProfile();
-    checkAdmin(data.username,data.password);
-  }
-};
 
 </script>
 
