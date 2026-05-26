@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roblox Demo</title>
+<title>Roblox</title>
 
 <style>
 body{
@@ -13,6 +13,7 @@ body{
   color:white;
 }
 
+/* HEADER */
 header{
   display:flex;
   justify-content:space-between;
@@ -45,6 +46,7 @@ nav a:hover{
   color:#00b7ff;
 }
 
+/* HERO */
 .hero{
   text-align:center;
   padding:70px;
@@ -64,10 +66,12 @@ button{
   cursor:pointer;
 }
 
+/* SECTIONS */
 .section{
   padding:20px;
 }
 
+/* MODAL */
 .modal{
   display:none;
   position:fixed;
@@ -90,12 +94,14 @@ input{
   margin:10px 0;
 }
 
+/* PROFILE */
 .profile{
   background:#181818;
   padding:15px;
   border-radius:10px;
 }
 
+/* ADMIN */
 .admin{
   background:#111;
   border:1px solid #333;
@@ -108,12 +114,13 @@ input{
 
 <body>
 
+<!-- HEADER -->
 <header>
 
 <div class="logo">
   <a href="#home">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Roblox_%282025%29_%28App_Icon%29.svg/500px-Roblox_%282025%29_%28App_Icon%29.svg.png">
-    <span>Roblox Demo</span>
+    <span>Roblox</span>
   </a>
 </div>
 
@@ -126,34 +133,43 @@ input{
 
 </header>
 
+<!-- HERO -->
 <section class="hero" id="home">
-  <h1>Play. Build. Explore.</h1>
-  <p>Your Roblox-style world starts here</p>
+  <h1>Welcome to Roblox Demo</h1>
+  <p>Play. Build. Explore.</p>
   <button onclick="openLogin()">Get Started</button>
 </section>
 
+<!-- PROFILE -->
 <section class="section" id="profile" style="display:none;">
 <h2>Profile</h2>
 <div class="profile" id="profileBox">No user logged in</div>
 </section>
 
+<!-- ADMIN -->
 <section class="section" id="admin" style="display:none;">
 <h2>Admin Panel</h2>
 <div class="admin" id="adminBox"></div>
 </section>
 
+<!-- LOGIN -->
 <div class="modal" id="loginModal">
 <div class="modal-content">
+
 <h3>Login</h3>
+
 <input id="username" placeholder="Username">
 <input id="password" type="password" placeholder="Password">
+
 <button onclick="login()">Login</button>
 <button onclick="closeLogin()">Close</button>
+
 </div>
 </div>
 
 <script>
 
+/* OPEN LOGIN */
 function openLogin(){
   document.getElementById("loginModal").style.display="flex";
 }
@@ -162,6 +178,7 @@ function closeLogin(){
   document.getElementById("loginModal").style.display="none";
 }
 
+/* LOGIN */
 function login(){
 
   let u=document.getElementById("username").value;
@@ -174,46 +191,54 @@ function login(){
 
   localStorage.setItem("userData",JSON.stringify({username:u,password:p}));
 
-  alert("Login saved!");
   closeLogin();
-
   showProfile();
-  checkAdmin(u);
+  checkAdmin(u,p);
 }
 
+/* PROFILE */
 function showProfile(){
-  document.getElementById("profile").style.display="block";
 
   let data=JSON.parse(localStorage.getItem("userData"));
 
-  if(data){
-    document.getElementById("profileBox").innerHTML=
-    "Username: "+data.username+"<br>Password: "+data.password;
+  if(!data){
+    document.getElementById("profileBox").innerHTML="No user logged in";
+    return;
   }
+
+  document.getElementById("profile").style.display="block";
+
+  document.getElementById("profileBox").innerHTML=
+  "Username: "+data.username+"<br>Password: "+data.password;
 }
 
-function checkAdmin(username){
+/* ADMIN CHECK */
+function checkAdmin(u,p){
 
-  if(username === "Naman"){
+  if(u==="naman" && p==="naman"){
     document.getElementById("admin").style.display="block";
     document.getElementById("adminNav").style.display="inline";
 
     document.getElementById("adminBox").innerHTML=
-    "Welcome Admin Naman 👑<br>Full system access granted.";
+    "👑 Welcome Admin Naman<br>Full system access granted.";
   }
 }
 
+/* ADMIN PAGE */
 function showAdmin(){
   document.getElementById("admin").style.display="block";
 }
 
+/* AUTO LOAD */
 window.onload=function(){
+  showProfile();
+
   let data=JSON.parse(localStorage.getItem("userData"));
+
   if(data){
-    showProfile();
-    checkAdmin(data.username);
+    checkAdmin(data.username,data.password);
   }
-}
+};
 
 </script>
 
