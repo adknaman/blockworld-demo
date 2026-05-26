@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlockWorld Demo</title>
+<title>Roblox Demo</title>
 
 <style>
 body{
@@ -13,7 +13,6 @@ body{
   color:white;
 }
 
-/* HEADER */
 header{
   display:flex;
   justify-content:space-between;
@@ -36,7 +35,6 @@ header{
   height:35px;
 }
 
-/* NAV */
 nav a{
   color:white;
   margin:0 10px;
@@ -47,7 +45,6 @@ nav a:hover{
   color:#00b7ff;
 }
 
-/* HERO */
 .hero{
   text-align:center;
   padding:70px;
@@ -58,7 +55,6 @@ nav a:hover{
   font-size:40px;
 }
 
-/* BUTTON */
 button{
   padding:10px 15px;
   background:#00b7ff;
@@ -68,25 +64,10 @@ button{
   cursor:pointer;
 }
 
-/* SECTIONS */
 .section{
   padding:20px;
 }
 
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
-}
-
-.card{
-  background:#1d1d1d;
-  padding:15px;
-  border-radius:10px;
-}
-
-/* MODAL */
 .modal{
   display:none;
   position:fixed;
@@ -109,9 +90,15 @@ input{
   margin:10px 0;
 }
 
-/* PROFILE */
 .profile{
   background:#181818;
+  padding:15px;
+  border-radius:10px;
+}
+
+.admin{
+  background:#111;
+  border:1px solid #333;
   padding:15px;
   border-radius:10px;
 }
@@ -121,86 +108,60 @@ input{
 
 <body>
 
-<!-- HEADER -->
 <header>
 
 <div class="logo">
   <a href="#home">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Roblox_%282025%29_%28App_Icon%29.svg/500px-Roblox_%282025%29_%28App_Icon%29.svg.png">
-    <span>BlockWorld</span>
+    <span>Roblox Demo</span>
   </a>
 </div>
 
 <nav>
   <a href="#home">Home</a>
-  <a href="#games">Games</a>
   <a href="#profile" onclick="showProfile()">Profile</a>
-  <a href="#admin" onclick="showAdmin()">Admin</a>
+  <a href="#admin" id="adminNav" style="display:none" onclick="showAdmin()">Admin</a>
   <a href="#" onclick="openLogin()">Login</a>
 </nav>
 
 </header>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <h1>Play. Build. Explore.</h1>
-  <p>Your gaming world starts here</p>
+  <p>Your Roblox-style world starts here</p>
   <button onclick="openLogin()">Get Started</button>
 </section>
 
-<!-- GAMES -->
-<section class="section" id="games">
-<h2>Games</h2>
-
-<div class="grid">
-  <div class="card">Battle Arena</div>
-  <div class="card">Sky Adventure</div>
-  <div class="card">Zombie World</div>
-</div>
-</section>
-
-<!-- PROFILE -->
 <section class="section" id="profile" style="display:none;">
 <h2>Profile</h2>
-<div class="profile" id="profileBox">
-No user logged in
-</div>
+<div class="profile" id="profileBox">No user logged in</div>
 </section>
 
-<!-- ADMIN -->
 <section class="section" id="admin" style="display:none;">
 <h2>Admin Panel</h2>
-<div class="profile" id="adminBox"></div>
+<div class="admin" id="adminBox"></div>
 </section>
 
-<!-- LOGIN MODAL -->
 <div class="modal" id="loginModal">
 <div class="modal-content">
-
 <h3>Login</h3>
-
 <input id="username" placeholder="Username">
 <input id="password" type="password" placeholder="Password">
-
 <button onclick="login()">Login</button>
 <button onclick="closeLogin()">Close</button>
-
 </div>
 </div>
 
 <script>
 
-/* OPEN LOGIN */
 function openLogin(){
   document.getElementById("loginModal").style.display="flex";
 }
 
-/* CLOSE LOGIN */
 function closeLogin(){
   document.getElementById("loginModal").style.display="none";
 }
 
-/* LOGIN + SAVE */
 function login(){
 
   let u=document.getElementById("username").value;
@@ -211,19 +172,15 @@ function login(){
     return;
   }
 
-  let user={
-    username:u,
-    password:p
-  };
-
-  localStorage.setItem("userData",JSON.stringify(user));
+  localStorage.setItem("userData",JSON.stringify({username:u,password:p}));
 
   alert("Login saved!");
   closeLogin();
+
   showProfile();
+  checkAdmin(u);
 }
 
-/* PROFILE */
 function showProfile(){
   document.getElementById("profile").style.display="block";
 
@@ -235,15 +192,26 @@ function showProfile(){
   }
 }
 
-/* ADMIN */
+function checkAdmin(username){
+
+  if(username === "Naman"){
+    document.getElementById("admin").style.display="block";
+    document.getElementById("adminNav").style.display="inline";
+
+    document.getElementById("adminBox").innerHTML=
+    "Welcome Admin Naman 👑<br>Full system access granted.";
+  }
+}
+
 function showAdmin(){
   document.getElementById("admin").style.display="block";
+}
 
+window.onload=function(){
   let data=JSON.parse(localStorage.getItem("userData"));
-
   if(data){
-    document.getElementById("adminBox").innerHTML=
-    "Stored User:<br>"+data.username;
+    showProfile();
+    checkAdmin(data.username);
   }
 }
 
