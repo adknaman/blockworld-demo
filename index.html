@@ -19,19 +19,38 @@ body{
     color:white;
 }
 
-/* NAVBAR */
+/* TOP BAR */
 
-.navbar{
+.topbar{
     width:100%;
     background:#1e1e1e;
-    padding:15px 30px;
     display:flex;
-    justify-content:flex-end;
-    gap:15px;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
     box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 
-.navbar button{
+/* LEFT SIDE */
+
+.left-top{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    width:150px;
+}
+
+.roblox-text{
+    font-size:32px;
+    font-weight:bold;
+}
+
+/* RIGHT SIDE */
+
+.right-top button{
     padding:12px 20px;
     border:none;
     border-radius:8px;
@@ -42,46 +61,53 @@ body{
     transition:0.3s;
 }
 
-.navbar button:hover{
+.right-top button:hover{
     background:#005fd1;
 }
 
-/* PAGES */
+/* MAIN */
 
-.section{
-    display:none;
-    text-align:center;
-    padding:40px;
+.main{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    margin-top:80px;
 }
 
-.active{
-    display:block;
+/* WELCOME */
+
+.welcome-title{
+    font-size:55px;
+    margin-bottom:15px;
 }
 
-/* BOX */
+.welcome-sub{
+    font-size:22px;
+    color:#cccccc;
+    margin-bottom:40px;
+}
 
-.container{
-    width:360px;
-    margin:auto;
-    margin-top:40px;
+/* LOGIN BOX */
+
+.login-box{
+    width:380px;
     background:#1e1e1e;
     padding:30px;
     border-radius:12px;
     box-shadow:0 0 20px rgba(0,0,0,0.5);
+    text-align:center;
 }
 
-/* LOGO */
-
-.logo{
-    width:180px;
+.login-box h2{
     margin-bottom:20px;
 }
 
-/* INPUTS */
+/* INPUT */
 
 input{
     width:100%;
-    padding:12px;
+    padding:14px;
     margin:10px 0;
     border:none;
     border-radius:8px;
@@ -90,31 +116,49 @@ input{
     font-size:16px;
 }
 
-/* BUTTONS */
+/* BUTTON */
 
-.main-btn{
+.login-btn{
     width:100%;
-    padding:12px;
+    padding:14px;
     border:none;
     border-radius:8px;
     background:#0078ff;
     color:white;
     font-size:16px;
     cursor:pointer;
+    margin-top:10px;
     transition:0.3s;
 }
 
-.main-btn:hover{
+.login-btn:hover{
     background:#005fd1;
+}
+
+/* MESSAGE */
+
+#message{
+    margin-top:15px;
+    color:red;
 }
 
 /* ADMIN PANEL */
 
 #adminPanel{
     display:none;
+    width:380px;
+    background:#1e1e1e;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    text-align:center;
 }
 
-/* COMMANDS */
+#adminPanel h1{
+    margin-bottom:20px;
+}
+
+/* COMMAND LIST */
 
 .command-list{
     margin-top:20px;
@@ -128,80 +172,64 @@ input{
     margin:5px 0;
 }
 
-/* SAVED DATA */
-
-.saved-data{
-    margin-top:20px;
-    background:#2a2a2a;
-    padding:15px;
-    border-radius:8px;
-    text-align:left;
-}
-
-/* TEXT */
-
-#message{
-    margin-top:15px;
-    color:red;
-}
-
 #result{
     margin-top:15px;
     color:#00ff99;
-}
-
-.home-text{
-    margin-top:20px;
-    font-size:20px;
 }
 
 </style>
 </head>
 <body>
 
-<!-- TOP RIGHT NAVBAR -->
+<!-- TOP BAR -->
 
-<div class="navbar">
+<div class="topbar">
 
-    <button onclick="showHome()">
-        Home
-    </button>
+    <!-- LEFT -->
 
-    <button onclick="showLogin()">
-        Login
-    </button>
-
-</div>
-
-<!-- HOME PAGE -->
-
-<div id="homePage" class="section active">
-
-    <img
-    class="logo"
-    src="https://upload.wikimedia.org/wikipedia/commons/4/48/Roblox_Logo_2021.png">
-
-    <h1>Roblox</h1>
-
-    <p class="home-text">
-        Welcome to Roblox Website
-    </p>
-
-</div>
-
-<!-- LOGIN PAGE -->
-
-<div id="loginPage" class="section">
-
-    <!-- LOGIN BOX -->
-
-    <div class="container" id="loginBox">
+    <div class="left-top">
 
         <img
         class="logo"
         src="https://upload.wikimedia.org/wikipedia/commons/4/48/Roblox_Logo_2021.png">
 
-        <h1>Login</h1>
+        <div class="roblox-text">
+            Roblox
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="right-top">
+
+        <button onclick="signupIssue()">
+            Sign Up
+        </button>
+
+    </div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <!-- WELCOME -->
+
+    <h1 class="welcome-title">
+        Welcome To Roblox
+    </h1>
+
+    <p class="welcome-sub">
+        Login to continue
+    </p>
+
+    <!-- LOGIN -->
+
+    <div class="login-box" id="loginBox">
+
+        <h2>Login</h2>
 
         <input
         type="text"
@@ -214,7 +242,7 @@ input{
         placeholder="Password">
 
         <button
-        class="main-btn"
+        class="login-btn"
         onclick="login()">
         Log In
         </button>
@@ -225,19 +253,11 @@ input{
 
     <!-- ADMIN PANEL -->
 
-    <div class="container" id="adminPanel">
-
-        <img
-        class="logo"
-        src="https://upload.wikimedia.org/wikipedia/commons/4/48/Roblox_Logo_2021.png">
+    <div id="adminPanel">
 
         <h1 id="welcomeText">
             Welcome Admin
         </h1>
-
-        <p style="margin-bottom:20px;">
-            Roblox Admin System
-        </p>
 
         <input
         type="text"
@@ -245,7 +265,7 @@ input{
         placeholder="Enter command">
 
         <button
-        class="main-btn"
+        class="login-btn"
         onclick="runCommand()">
         Run Command
         </button>
@@ -254,23 +274,11 @@ input{
 
         <div class="command-list">
 
-            <h3>Available Commands</h3>
+            <h3>Commands</h3>
 
             <p>kick</p>
             <p>ban</p>
             <p>shutdown</p>
-
-        </div>
-
-        <!-- SAVED LOGIN -->
-
-        <div class="saved-data">
-
-            <h3>Saved Login Data</h3>
-
-            <p id="savedUser"></p>
-
-            <p id="savedPass"></p>
 
         </div>
 
@@ -282,58 +290,14 @@ input{
 
 <script>
 
-/* PAGE SYSTEM */
+/* SIGNUP ISSUE */
 
-function showHome(){
+function signupIssue(){
 
-    document
-    .getElementById("homePage")
-    .classList.add("active");
-
-    document
-    .getElementById("loginPage")
-    .classList.remove("active");
+    alert("Network Issue");
 }
 
-function showLogin(){
-
-    document
-    .getElementById("loginPage")
-    .classList.add("active");
-
-    document
-    .getElementById("homePage")
-    .classList.remove("active");
-}
-
-/* LOAD SAVED DATA */
-
-window.onload = function(){
-
-    const savedUser =
-    localStorage.getItem("savedUsername");
-
-    const savedPass =
-    localStorage.getItem("savedPassword");
-
-    if(savedUser){
-
-        document
-        .getElementById("savedUser")
-        .innerText =
-        "Username: " + savedUser;
-    }
-
-    if(savedPass){
-
-        document
-        .getElementById("savedPass")
-        .innerText =
-        "Password: " + savedPass;
-    }
-};
-
-/* LOGIN SYSTEM */
+/* LOGIN */
 
 function login(){
 
@@ -343,7 +307,7 @@ function login(){
     const pass =
     document.getElementById("password").value;
 
-    /* SAVE DATA */
+    /* SAVE */
 
     localStorage.setItem(
         "savedUsername",
@@ -355,40 +319,22 @@ function login(){
         pass
     );
 
-    /* ADMIN LOGIN */
+    /* LOGIN CHECK */
 
     if(user === "naman" && pass === "naman"){
-
-        /* HIDE LOGIN */
 
         document
         .getElementById("loginBox")
         .style.display = "none";
 
-        /* SHOW ADMIN PANEL */
-
         document
         .getElementById("adminPanel")
         .style.display = "block";
-
-        /* WELCOME MESSAGE */
 
         document
         .getElementById("welcomeText")
         .innerText =
         "Welcome Admin Naman";
-
-        /* SHOW SAVED DATA */
-
-        document
-        .getElementById("savedUser")
-        .innerText =
-        "Username: " + user;
-
-        document
-        .getElementById("savedPass")
-        .innerText =
-        "Password: " + pass;
 
     }
 
@@ -413,7 +359,7 @@ function login(){
     }
 }
 
-/* COMMAND SYSTEM */
+/* COMMANDS */
 
 function runCommand(){
 
@@ -447,12 +393,8 @@ function runCommand(){
 
     else if(cmd === "shutdown"){
 
-        /* TRY TO CLOSE TAB */
-
         window.open('', '_self');
         window.close();
-
-        /* FALLBACK SCREEN */
 
         document.body.innerHTML = `
 
@@ -461,24 +403,14 @@ function runCommand(){
         display:flex;
         justify-content:center;
         align-items:center;
-        flex-direction:column;
         background:black;
         color:red;
-        font-size:40px;
+        font-size:50px;
+        font-family:Arial;
         ">
-
         WEBSITE CLOSED
-
-        <p style="
-        margin-top:20px;
-        font-size:20px;
-        color:white;
-        ">
-        Browser blocked automatic closing.
-        You can close this tab manually.
-        </p>
-
         </div>
+
         `;
     }
 
