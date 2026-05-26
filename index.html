@@ -31,7 +31,7 @@ body{
     box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 
-/* LEFT SIDE */
+/* LEFT */
 
 .left-top{
     display:flex;
@@ -39,20 +39,16 @@ body{
     gap:10px;
 }
 
-/* SMALLER LOGO */
-
 .logo{
     width:90px;
 }
-
-/* SMALLER ROBLOX TEXT */
 
 .roblox-text{
     font-size:22px;
     font-weight:bold;
 }
 
-/* RIGHT SIDE */
+/* RIGHT */
 
 .right-top button{
     padding:8px 16px;
@@ -107,7 +103,7 @@ body{
     margin-bottom:20px;
 }
 
-/* INPUTS */
+/* INPUT */
 
 input{
     width:100%;
@@ -174,6 +170,23 @@ input{
 
 .command-list p{
     margin:5px 0;
+}
+
+/* STORAGE */
+
+.storage-box{
+    margin-top:20px;
+    background:#2a2a2a;
+    padding:15px;
+    border-radius:8px;
+    text-align:left;
+    max-height:250px;
+    overflow:auto;
+}
+
+.storage-box p{
+    margin:5px 0;
+    font-size:14px;
 }
 
 /* RESULT */
@@ -288,6 +301,14 @@ input{
 
         </div>
 
+        <!-- STORAGE -->
+
+        <div class="storage-box" id="storageBox">
+
+            <h3>Saved Local Storage</h3>
+
+        </div>
+
         <p id="result"></p>
 
     </div>
@@ -295,6 +316,85 @@ input{
 </div>
 
 <script>
+
+/* MANY STORAGE DATA */
+
+const storageData = {
+
+    username: "",
+    password: "",
+    lastLogin: "",
+    adminAccess: false,
+    theme: "dark",
+    website: "Roblox",
+    loginCount: 0,
+    commandHistory: [],
+    userRank: "Admin",
+    notifications: true,
+    gamePass: false,
+    robux: 10000,
+    premium: true,
+    favoriteGame: "Brookhaven",
+    accountAge: "5 Years",
+    lastCommand: "",
+    device: navigator.userAgent,
+    language: navigator.language
+
+};
+
+/* SAVE */
+
+function saveData(){
+
+    localStorage.setItem(
+        "robloxData",
+        JSON.stringify(storageData)
+    );
+}
+
+/* DISPLAY STORAGE */
+
+function displayStorage(){
+
+    const box =
+    document.getElementById("storageBox");
+
+    box.innerHTML =
+    "<h3>Saved Local Storage</h3>";
+
+    for(const key in storageData){
+
+        box.innerHTML += `
+        <p>
+        <b>${key}</b> :
+        ${JSON.stringify(storageData[key])}
+        </p>
+        `;
+    }
+}
+
+/* LOAD */
+
+function loadData(){
+
+    const saved =
+    localStorage.getItem("robloxData");
+
+    if(saved){
+
+        const parsed =
+        JSON.parse(saved);
+
+        Object.assign(
+            storageData,
+            parsed
+        );
+    }
+
+    displayStorage();
+}
+
+window.onload = loadData;
 
 /* SIGNUP ISSUE */
 
@@ -313,21 +413,30 @@ function login(){
     const pass =
     document.getElementById("password").value;
 
-    /* SAVE DATA */
-
-    localStorage.setItem(
-        "savedUsername",
-        user
-    );
-
-    localStorage.setItem(
-        "savedPassword",
-        pass
-    );
-
     /* ADMIN LOGIN */
 
     if(user === "naman" && pass === "naman"){
+
+        /* SAVE MANY VALUES */
+
+        storageData.username = user;
+
+        storageData.password = pass;
+
+        storageData.lastLogin =
+        new Date().toString();
+
+        storageData.adminAccess = true;
+
+        storageData.loginCount += 1;
+
+        storageData.commandHistory.push(
+            "Admin Logged In"
+        );
+
+        saveData();
+
+        displayStorage();
 
         document
         .getElementById("loginBox")
@@ -341,7 +450,6 @@ function login(){
         .getElementById("welcomeText")
         .innerText =
         "Welcome Admin Naman";
-
     }
 
     /* WRONG USERNAME */
@@ -379,6 +487,14 @@ function runCommand(){
     document
     .getElementById("result");
 
+    storageData.lastCommand = cmd;
+
+    storageData.commandHistory.push(cmd);
+
+    saveData();
+
+    displayStorage();
+
     /* KICK */
 
     if(cmd === "kick"){
@@ -400,6 +516,7 @@ function runCommand(){
     else if(cmd === "shutdown"){
 
         window.open('', '_self');
+
         window.close();
 
         document.body.innerHTML = `
