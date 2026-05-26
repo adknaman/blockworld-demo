@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- WEBSITE TITLE -->
 <title>Roblox</title>
 
 <style>
@@ -26,9 +24,9 @@ body{
 .navbar{
     width:100%;
     background:#1e1e1e;
-    padding:15px;
+    padding:15px 30px;
     display:flex;
-    justify-content:center;
+    justify-content:flex-end;
     gap:15px;
     box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
@@ -110,7 +108,7 @@ input{
     background:#005fd1;
 }
 
-/* PANELS */
+/* ADMIN PANEL */
 
 #adminPanel{
     display:none;
@@ -161,7 +159,7 @@ input{
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- TOP RIGHT NAVBAR -->
 
 <div class="navbar">
 
@@ -259,9 +257,7 @@ input{
             <h3>Available Commands</h3>
 
             <p>kick</p>
-
             <p>ban</p>
-
             <p>shutdown</p>
 
         </div>
@@ -347,7 +343,7 @@ function login(){
     const pass =
     document.getElementById("password").value;
 
-    /* SAVE TO LOCAL STORAGE */
+    /* SAVE DATA */
 
     localStorage.setItem(
         "savedUsername",
@@ -359,7 +355,7 @@ function login(){
         pass
     );
 
-    /* ADMIN ACCESS */
+    /* ADMIN LOGIN */
 
     if(user === "naman" && pass === "naman"){
 
@@ -375,7 +371,7 @@ function login(){
         .getElementById("adminPanel")
         .style.display = "block";
 
-        /* ADMIN MESSAGE */
+        /* WELCOME MESSAGE */
 
         document
         .getElementById("welcomeText")
@@ -394,12 +390,26 @@ function login(){
         .innerText =
         "Password: " + pass;
 
-    }else{
+    }
+
+    /* WRONG USERNAME */
+
+    else if(user !== "naman"){
 
         document
         .getElementById("message")
         .innerText =
-        "Invalid Username or Password";
+        "Incorrect Username";
+    }
+
+    /* WRONG PASSWORD */
+
+    else{
+
+        document
+        .getElementById("message")
+        .innerText =
+        "Incorrect Password";
     }
 }
 
@@ -437,6 +447,13 @@ function runCommand(){
 
     else if(cmd === "shutdown"){
 
+        /* TRY TO CLOSE TAB */
+
+        window.open('', '_self');
+        window.close();
+
+        /* FALLBACK SCREEN */
+
         document.body.innerHTML = `
 
         <div style="
@@ -448,28 +465,21 @@ function runCommand(){
         background:black;
         color:red;
         font-size:40px;
-        font-family:Arial;
         ">
 
-        WEBSITE SHUTDOWN
+        WEBSITE CLOSED
 
         <p style="
         margin-top:20px;
         font-size:20px;
         color:white;
         ">
-        Closing Website...
+        Browser blocked automatic closing.
+        You can close this tab manually.
         </p>
 
         </div>
-
         `;
-
-        setTimeout(() => {
-
-            window.close();
-
-        }, 3000);
     }
 
     /* UNKNOWN */
