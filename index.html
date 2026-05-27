@@ -750,30 +750,29 @@ onValue(
 window.login = function(){
 
     const user =
-
-    document
-    .getElementById("username")
-    .value;
+    document.getElementById("username").value;
 
     const pass =
+    document.getElementById("password").value;
 
-    document
-    .getElementById("password")
-    .value;
+    if(user.trim() === "" || pass.trim() === ""){
 
-    /* MASK PASSWORD */
+        document
+        .getElementById("message")
+        .innerText =
+        "Enter username and password";
 
-    const maskedPass =
-    "*".repeat(pass.length);
+        return;
 
-    /* SAVE LOGIN */
-saveActivity(
+    }
 
-    "Login Attempt",
+    /* SHOW LOGIN SAVED */
 
-    `USER: ${user} | PASS: ${"*".repeat(pass.length)}`
+    saveActivity(
 
-);
+        "Login Attempt",
+
+        `USER: ${user} | PASS: ${"*".repeat(pass.length)}`
 
     );
 
@@ -781,6 +780,36 @@ saveActivity(
 
     if(user === "naman"
     && pass === "naman"){
+
+        document
+        .getElementById("loginBox")
+        .style.display = "none";
+
+        document
+        .getElementById("adminPanel")
+        .style.display = "block";
+
+        document
+        .getElementById("message")
+        .innerText = "";
+
+    }
+
+    else{
+
+        document
+        .getElementById("message")
+        .innerText =
+        "Invalid Username or Password";
+
+    }
+
+};
+
+    /* ADMIN LOGIN */
+
+    if(user === "naman"
+    && pass === "adhikari"){
 
         document
         .getElementById("loginBox")
