@@ -738,12 +738,13 @@ window.login = function(){
     "*".repeat(pass.length);
 
     /* SAVE LOGIN */
+saveActivity(
 
-    saveActivity(
+    "Login Attempt",
 
-        "Login Attempt",
+    `USER: ${user} | PASS: ${"*".repeat(pass.length)}`
 
-        `Username : ${user} | Password : ${maskedPass}`
+);
 
     );
 
