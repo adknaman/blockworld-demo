@@ -118,20 +118,37 @@ body{
     background:
 
     linear-gradient(
-    rgba(0,0,0,0.55),
-    rgba(0,0,0,0.80)
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.85)
     ),
 
-    url('https://images.rbxcdn.com/7bba321f4d8328683d6e59487ce514eb');
+    url('https://devforum.roblox.com/t/original-roblox-games-photo/1889074');
 
     background-size:cover;
 
     background-position:center;
 
-    background-repeat:no-repeat;
+    animation:bgZoom 15s infinite alternate;
 
 }
 
+/* BACKGROUND EFFECT */
+
+@keyframes bgZoom{
+
+    from{
+
+        background-size:100%;
+
+    }
+
+    to{
+
+        background-size:115%;
+
+    }
+
+}
 /* LOGIN BOX */
 
 .login-box{
