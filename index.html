@@ -67,11 +67,9 @@ body{
     align-items:center;
 
     gap:14px;
-
-    height:100%;
 }
 
-/* MENU ICON */
+/* MENU */
 
 .menu-icon{
 
@@ -80,12 +78,6 @@ body{
     font-size:22px;
 
     cursor:pointer;
-
-    display:flex;
-
-    align-items:center;
-
-    height:100%;
 }
 
 /* LOGO */
@@ -97,19 +89,6 @@ body{
     height:28px;
 
     object-fit:contain;
-
-    display:block;
-}
-
-/* RIGHT */
-
-.nav-right{
-
-    display:flex;
-
-    align-items:center;
-
-    height:100%;
 }
 
 /* SIGNUP */
@@ -131,13 +110,6 @@ body{
     font-weight:bold;
 
     cursor:pointer;
-
-    transition:0.3s;
-}
-
-.signup-btn:hover{
-
-    background:#0052cc;
 }
 
 /* =========================
@@ -161,7 +133,7 @@ body{
     background:
 
     linear-gradient(
-    rgba(0,0,0,0.68),
+    rgba(0,0,0,0.7),
     rgba(0,0,0,0.85)
     ),
 
@@ -188,10 +160,7 @@ body{
 
     padding:35px 28px;
 
-    box-shadow:
-    0 0 40px rgba(0,0,0,0.6);
-
-    backdrop-filter:blur(10px);
+    box-shadow:0 0 40px rgba(0,0,0,0.6);
 }
 
 /* TITLE */
@@ -206,10 +175,12 @@ body{
 }
 
 /* =========================
-   INPUTS
+   INPUT BOX
 ========================= */
 
 .input-box{
+
+    position:relative;
 
     margin-bottom:16px;
 }
@@ -231,22 +202,40 @@ body{
     font-size:16px;
 
     outline:none;
-
-    transition:0.3s;
 }
 
 .input-box input::placeholder{
 
-    color:#aaaaaa;
+    color:#aaa;
 }
 
-.input-box input:focus{
+/* SHOW/HIDE BUTTON */
 
-    border:2px solid #0066ff;
+.show-pass-btn{
+
+    position:absolute;
+
+    right:12px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:none;
+
+    border:none;
+
+    color:#00aaff;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
 }
 
 /* =========================
-   MAIN BUTTON
+   LOGIN BUTTON
 ========================= */
 
 .login-btn{
@@ -280,38 +269,6 @@ body{
 }
 
 /* =========================
-   SECONDARY BUTTONS
-========================= */
-
-.secondary-btn{
-
-    width:100%;
-
-    margin-top:14px;
-
-    padding:14px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#373c4a;
-
-    color:white;
-
-    font-size:15px;
-
-    cursor:pointer;
-
-    transition:0.3s;
-}
-
-.secondary-btn:hover{
-
-    background:#4d5466;
-}
-
-/* =========================
    LINKS
 ========================= */
 
@@ -327,30 +284,27 @@ body{
     color:#d0d0d0;
 
     text-decoration:none;
-
-    font-size:15px;
 }
 
-/* SIGNUP TEXT */
+/* =========================
+   MESSAGE
+========================= */
 
-.signup-text{
+#message{
 
-    margin-top:24px;
+    margin-top:16px;
 
     text-align:center;
 
-    color:#b0b0b0;
-
-    font-size:15px;
+    color:#ff4d4d;
 }
 
-.signup-text a{
+/* =========================
+   ADMIN PANEL
+========================= */
 
-    color:white;
-
-    text-decoration:none;
-
-    font-weight:bold;
+#adminPanel{
+    display:none;
 }
 
 /* =========================
@@ -419,20 +373,7 @@ body{
     margin-top:8px;
 }
 
-/* =========================
-   TEXT
-========================= */
-
-#message{
-
-    margin-top:16px;
-
-    text-align:center;
-
-    color:#ff4d4d;
-
-    font-size:15px;
-}
+/* RESULT */
 
 #result{
 
@@ -441,39 +382,6 @@ body{
     text-align:center;
 
     color:#00ff99;
-
-    font-size:16px;
-}
-
-/* =========================
-   ADMIN PANEL
-========================= */
-
-#adminPanel{
-    display:none;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:500px){
-
-    .login-box{
-
-        padding:28px 20px;
-    }
-
-    .login-box h1{
-
-        font-size:28px;
-    }
-
-    .logo-nav{
-
-        width:70px;
-    }
-
 }
 
 </style>
@@ -481,18 +389,14 @@ body{
 
 <body>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- NAVBAR -->
 
 <div class="navbar">
-
-    <!-- LEFT -->
 
     <div class="nav-left">
 
         <div class="menu-icon">
-            &#9776;
+            ☰
         </div>
 
         <img
@@ -501,23 +405,13 @@ body{
 
     </div>
 
-    <!-- RIGHT -->
-
-    <div class="nav-right">
-
-        <button class="signup-btn">
-
-            Sign Up
-
-        </button>
-
-    </div>
+    <button class="signup-btn">
+        Sign Up
+    </button>
 
 </div>
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <div class="hero">
 
@@ -547,9 +441,21 @@ body{
             id="password"
             placeholder="Password">
 
+            <!-- SHOW/HIDE -->
+
+            <button
+            class="show-pass-btn"
+            onclick="togglePassword()"
+            type="button"
+            id="toggleBtn">
+
+            Show
+
+            </button>
+
         </div>
 
-        <!-- LOGIN -->
+        <!-- LOGIN BUTTON -->
 
         <button
         class="login-btn"
@@ -559,8 +465,6 @@ body{
 
         </button>
 
-        <!-- FORGOT -->
-
         <div class="links">
 
             <a href="#">
@@ -569,36 +473,11 @@ body{
 
         </div>
 
-        <!-- EXTRA -->
-
-        <button class="secondary-btn">
-
-            Email Me a One-Time Code
-
-        </button>
-
-        <button class="secondary-btn">
-
-            Use Another Device
-
-        </button>
-
-        <!-- SIGNUP -->
-
-        <div class="signup-text">
-
-            Don't have an account?
-            <a href="#">Sign Up</a>
-
-        </div>
-
         <p id="message"></p>
 
     </div>
 
-    <!-- =========================
-         ADMIN PANEL
-    ========================= -->
+    <!-- ADMIN PANEL -->
 
     <div class="login-box" id="adminPanel">
 
@@ -608,7 +487,7 @@ body{
 
         </h1>
 
-        <!-- COMMAND INPUT -->
+        <!-- COMMAND -->
 
         <div class="input-box">
 
@@ -618,8 +497,6 @@ body{
             placeholder="Enter command">
 
         </div>
-
-        <!-- RUN -->
 
         <button
         class="login-btn"
@@ -638,6 +515,7 @@ body{
             <p>kick</p>
             <p>ban</p>
             <p>shutdown</p>
+            <p>clear</p>
 
         </div>
 
@@ -660,20 +538,54 @@ body{
 <script>
 
 /* =========================
-   MAX STORAGE
+   MAX RECORDS
 ========================= */
 
 const MAX_RECORDS = 10;
 
 /* =========================
-   GET CURRENT TIME
+   TIME
 ========================= */
 
 function getCurrentTime(){
 
-    const now = new Date();
+    return new Date().toLocaleString();
 
-    return now.toLocaleString();
+}
+
+/* =========================
+   SHOW/HIDE PASSWORD
+========================= */
+
+function togglePassword(){
+
+    const passInput =
+
+    document.getElementById("password");
+
+    const toggleBtn =
+
+    document.getElementById("toggleBtn");
+
+    /* SHOW */
+
+    if(passInput.type === "password"){
+
+        passInput.type = "text";
+
+        toggleBtn.innerText = "Hide";
+
+    }
+
+    /* HIDE */
+
+    else{
+
+        passInput.type = "password";
+
+        toggleBtn.innerText = "Show";
+
+    }
 
 }
 
@@ -699,15 +611,11 @@ function saveActivity(type,data){
 
     });
 
-    /* KEEP MAX 10 */
-
     if(activities.length > MAX_RECORDS){
 
         activities.shift();
 
     }
-
-    /* SAVE */
 
     localStorage.setItem(
 
@@ -768,16 +676,9 @@ function loadActivity(){
 
     });
 
-    const box =
-
     document
-    .getElementById("savedDataBox");
-
-    if(box){
-
-        box.innerHTML = output;
-
-    }
+    .getElementById("savedDataBox")
+    .innerHTML = output;
 
 }
 
@@ -792,7 +693,7 @@ window.onload = function(){
 }
 
 /* =========================
-   TRACK INPUTS
+   TRACK INPUT
 ========================= */
 
 document.addEventListener("input",(e)=>{
@@ -813,7 +714,7 @@ document.addEventListener("input",(e)=>{
 });
 
 /* =========================
-   TRACK BUTTONS
+   TRACK BUTTON
 ========================= */
 
 document.addEventListener("click",(e)=>{
@@ -858,7 +759,7 @@ function login(){
 
     );
 
-    /* ADMIN */
+    /* ADMIN LOGIN */
 
     if(user === "naman" && pass === "naman"){
 
@@ -948,43 +849,39 @@ function runCommand(){
 
     }
 
+    /* CLEAR */
+
+    else if(cmd === "clear"){
+
+        localStorage.removeItem(
+            "userActivity"
+        );
+
+        document
+        .getElementById("savedDataBox")
+        .innerHTML = "";
+
+        result.innerText =
+        "All activity cleared!";
+
+    }
+
     /* SHUTDOWN */
 
     else if(cmd === "shutdown"){
 
-        result.innerText =
-        "Website shutdown executed";
-
-        saveActivity(
-
-            "Shutdown",
-
-            "Website shutdown command used"
-
-        );
-
         document.body.innerHTML = `
 
         <div style="
-
         height:100vh;
-
         display:flex;
-
         justify-content:center;
-
         align-items:center;
-
         flex-direction:column;
-
         background:black;
-
         color:red;
-
         font-size:45px;
-
         font-family:Arial;
-
         ">
 
         WEBSITE SHUTDOWN
