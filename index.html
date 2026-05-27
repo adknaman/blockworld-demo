@@ -65,8 +65,6 @@ body{
     border-bottom:1px solid #2d3138;
 }
 
-/* LEFT */
-
 .nav-left{
 
     display:flex;
@@ -75,8 +73,6 @@ body{
 
     gap:14px;
 }
-
-/* MENU */
 
 .menu-icon{
 
@@ -87,8 +83,6 @@ body{
     cursor:pointer;
 }
 
-/* LOGO */
-
 .logo-nav{
 
     width:78px;
@@ -97,8 +91,6 @@ body{
 
     object-fit:contain;
 }
-
-/* BUTTON */
 
 .signup-btn{
 
@@ -170,8 +162,6 @@ body{
     box-shadow:0 0 40px rgba(0,0,0,0.6);
 }
 
-/* TITLE */
-
 .login-box h1{
 
     text-align:center;
@@ -242,7 +232,7 @@ body{
 }
 
 /* =========================
-   LOGIN BUTTON
+   BUTTONS
 ========================= */
 
 .login-btn{
@@ -275,10 +265,6 @@ body{
     color:black;
 }
 
-/* =========================
-   EXTRA BUTTONS
-========================= */
-
 .secondary-btn{
 
     width:100%;
@@ -298,13 +284,6 @@ body{
     font-size:15px;
 
     cursor:pointer;
-
-    transition:0.3s;
-}
-
-.secondary-btn:hover{
-
-    background:#4d5466;
 }
 
 /* =========================
@@ -324,8 +303,6 @@ body{
 
     text-decoration:none;
 }
-
-/* SIGNUP */
 
 .signup-text{
 
@@ -348,7 +325,7 @@ body{
 }
 
 /* =========================
-   MESSAGE
+   TEXT
 ========================= */
 
 #message{
@@ -378,10 +355,6 @@ body{
     display:none;
 }
 
-/* =========================
-   PANEL BOX
-========================= */
-
 .panel-box{
 
     margin-top:22px;
@@ -398,7 +371,7 @@ body{
 }
 
 /* =========================
-   ACTIVITY CARD
+   ACTIVITY
 ========================= */
 
 .activity-card{
@@ -531,7 +504,7 @@ body{
 
         </div>
 
-        <!-- EXTRA BUTTONS -->
+        <!-- EXTRA -->
 
         <button class="secondary-btn">
 
@@ -613,8 +586,7 @@ body{
 
             <h3>
 
-                Online User Activity
-                (50 Latest)
+                Online + Local User Activity
 
             </h3>
 
@@ -721,31 +693,50 @@ window.togglePassword = function(){
 };
 
 /* =========================
-   SAVE ONLINE
+   SAVE ONLINE + LOCAL
 ========================= */
 
 window.saveActivity = function(type,data){
 
+    const info = {
+
+        type:type,
+
+        data:data,
+
+        time:new Date().toLocaleString()
+
+    };
+
+    /* FIREBASE */
+
     push(
-
         ref(db,"activities"),
+        info
+    );
 
-        {
+    /* LOCAL STORAGE */
 
-            type:type,
+    let localData =
 
-            data:data,
+    JSON.parse(
+        localStorage.getItem("backup")
+    ) || [];
 
-            time:new Date().toLocaleString()
+    localData.push(info);
 
-        }
+    localStorage.setItem(
+
+        "backup",
+
+        JSON.stringify(localData)
 
     );
 
 };
 
 /* =========================
-   LIVE ACTIVITY
+   LIVE FIREBASE DATA
 ========================= */
 
 onValue(
@@ -973,8 +964,10 @@ window.runCommand = function(){
             ref(db,"activities")
         );
 
+        localStorage.clear();
+
         result.innerText =
-        "Database cleared!";
+        "Firebase + LocalStorage cleared!";
 
     }
 
