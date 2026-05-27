@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Roblox Login</title>
 
 <style>
 
-/* RESET */
+/* =========================
+   RESET
+========================= */
 
 *{
     margin:0;
@@ -16,226 +19,417 @@
     font-family:Arial,sans-serif;
 }
 
-/* BODY */
+/* =========================
+   BODY
+========================= */
 
 body{
     background:#000;
-    overflow-x:hidden;
     color:white;
+    overflow-x:hidden;
 }
 
-/* TOP NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar{
+
     width:100%;
-    height:70px;
-    background:#12131a;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 20px;
+    height:56px;
+
+    background:#191b1f;
+
     position:fixed;
+
     top:0;
     left:0;
+
     z-index:1000;
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 18px;
+
+    border-bottom:1px solid #2c2f36;
 }
+
+/* LEFT */
+
+.nav-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+/* MENU ICON */
+
+.menu-icon{
+
+    color:white;
+
+    font-size:23px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    opacity:0.9;
+}
+
+/* ROBLOX LOGO */
 
 .logo-nav{
-    width:90px;
+
+    width:68px;
+
+    height:auto;
+
+    object-fit:contain;
 }
+
+/* RIGHT */
 
 .nav-right{
+
     display:flex;
+
     align-items:center;
-    gap:15px;
 }
 
+/* SIGNUP BUTTON */
+
 .signup-btn{
+
     background:#0066ff;
+
     border:none;
-    padding:10px 22px;
+
     color:white;
+
+    padding:9px 18px;
+
     border-radius:10px;
-    font-size:16px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
     cursor:pointer;
+
     transition:0.3s;
 }
 
 .signup-btn:hover{
-    background:#0052cc;
+
+    background:#0050cc;
+
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
+
+    width:100%;
+
     min-height:100vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.65),
-    rgba(0,0,0,0.75)),
-    url('https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=2070');
-    background-size:cover;
-    background-position:center;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
-    padding-top:80px;
+
+    padding-top:60px;
+
+    background:
+
+    linear-gradient(
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.8)
+    ),
+
+    url('https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=2070');
+
+    background-size:cover;
+
+    background-position:center;
 }
 
-/* LOGIN BOX */
+/* =========================
+   LOGIN BOX
+========================= */
 
 .login-box{
+
     width:92%;
+
     max-width:430px;
-    background:#1b1d27;
-    padding:40px 30px;
+
+    background:#1f222c;
+
     border-radius:16px;
-    box-shadow:0 0 40px rgba(0,0,0,0.6);
-    backdrop-filter:blur(8px);
+
+    padding:35px 28px;
+
+    box-shadow:
+
+    0 0 40px rgba(0,0,0,0.6);
+
+    backdrop-filter:blur(10px);
 }
+
+/* TITLE */
 
 .login-box h1{
+
     text-align:center;
-    font-size:42px;
-    margin-bottom:25px;
+
+    font-size:36px;
+
+    margin-bottom:24px;
 }
 
-/* INPUTS */
+/* =========================
+   INPUTS
+========================= */
 
 .input-box{
-    margin-bottom:18px;
+
+    margin-bottom:16px;
 }
 
 .input-box input{
+
     width:100%;
-    padding:16px;
+
+    padding:15px;
+
     border:none;
+
     border-radius:12px;
-    background:#2a2d3a;
+
+    background:#2d313d;
+
     color:white;
-    font-size:17px;
+
+    font-size:16px;
+
     outline:none;
+
     transition:0.3s;
 }
 
+.input-box input::placeholder{
+
+    color:#a9a9a9;
+}
+
 .input-box input:focus{
+
     border:2px solid #0066ff;
 }
 
-.input-box input::placeholder{
-    color:#aaa;
-}
-
-/* BUTTONS */
+/* =========================
+   MAIN BUTTON
+========================= */
 
 .login-btn{
+
     width:100%;
+
     padding:15px;
-    border:2px solid #fff;
+
+    border:2px solid white;
+
     border-radius:12px;
+
     background:transparent;
+
     color:white;
-    font-size:20px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
     cursor:pointer;
+
     transition:0.3s;
 }
 
 .login-btn:hover{
+
     background:white;
+
     color:black;
 }
 
+/* =========================
+   SECONDARY BUTTON
+========================= */
+
 .secondary-btn{
+
     width:100%;
-    margin-top:15px;
+
+    margin-top:14px;
+
     padding:14px;
+
     border:none;
+
     border-radius:12px;
-    background:#34384b;
+
+    background:#373c4a;
+
     color:white;
-    font-size:17px;
+
+    font-size:15px;
+
     cursor:pointer;
+
     transition:0.3s;
 }
 
 .secondary-btn:hover{
-    background:#4a4f66;
+
+    background:#4a5163;
 }
 
-/* LINKS */
+/* =========================
+   LINKS
+========================= */
 
 .links{
+
+    margin-top:18px;
+
     text-align:center;
-    margin-top:20px;
 }
 
 .links a{
+
     color:#d0d0d0;
+
     text-decoration:none;
-    font-size:17px;
+
+    font-size:15px;
 }
 
+/* SIGNUP TEXT */
+
 .signup-text{
-    margin-top:30px;
+
+    margin-top:24px;
+
     text-align:center;
-    color:#bbb;
-    font-size:17px;
+
+    color:#b0b0b0;
+
+    font-size:15px;
 }
 
 .signup-text a{
+
     color:white;
-    text-decoration:none;
+
     font-weight:bold;
+
+    text-decoration:none;
 }
 
-/* ADMIN PANEL */
+/* =========================
+   PANEL BOX
+========================= */
+
+.panel-box{
+
+    margin-top:22px;
+
+    background:#2a2f3a;
+
+    border-radius:12px;
+
+    padding:18px;
+}
+
+.panel-box h3{
+
+    margin-bottom:12px;
+
+    color:#00aaff;
+}
+
+.panel-box p{
+
+    margin:8px 0;
+
+    font-size:14px;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+#message{
+
+    margin-top:16px;
+
+    text-align:center;
+
+    color:#ff4d4d;
+
+    font-size:15px;
+}
+
+#result{
+
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#00ff99;
+
+    font-size:16px;
+}
+
+/* =========================
+   ADMIN PANEL
+========================= */
 
 #adminPanel{
     display:none;
 }
 
-.panel-box{
-    margin-top:25px;
-    background:#252838;
-    padding:18px;
-    border-radius:12px;
-}
-
-.panel-box h3{
-    margin-bottom:12px;
-    color:#00aaff;
-}
-
-.panel-box p{
-    margin:7px 0;
-}
-
-/* MESSAGE */
-
-#message{
-    text-align:center;
-    margin-top:15px;
-    color:#ff4d4d;
-    font-size:16px;
-}
-
-#result{
-    margin-top:18px;
-    color:#00ff99;
-    text-align:center;
-    font-size:17px;
-}
-
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:500px){
 
     .login-box{
-        padding:35px 20px;
+
+        padding:30px 20px;
+
     }
 
     .login-box h1{
-        font-size:34px;
+
+        font-size:30px;
+    }
+
+    .logo-nav{
+
+        width:60px;
     }
 
 }
@@ -245,33 +439,59 @@ body{
 
 <body>
 
-<!-- NAVBAR -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <div class="navbar">
 
-    <img
-    class="logo-nav"
-    src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+    <!-- LEFT -->
+
+    <div class="nav-left">
+
+        <!-- MENU -->
+
+        <div class="menu-icon">
+
+            &#9776;
+
+        </div>
+
+        <!-- LOGO -->
+
+        <img
+        class="logo-nav"
+        src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+
+    </div>
+
+    <!-- RIGHT -->
 
     <div class="nav-right">
 
         <button class="signup-btn">
+
             Sign Up
+
         </button>
 
     </div>
 
 </div>
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <div class="hero">
 
-    <!-- LOGIN -->
+    <!-- LOGIN BOX -->
 
     <div class="login-box" id="loginBox">
 
         <h1>Login to Roblox</h1>
+
+        <!-- USERNAME -->
 
         <div class="input-box">
 
@@ -282,6 +502,8 @@ body{
 
         </div>
 
+        <!-- PASSWORD -->
+
         <div class="input-box">
 
             <input
@@ -291,27 +513,43 @@ body{
 
         </div>
 
+        <!-- LOGIN -->
+
         <button
         class="login-btn"
         onclick="login()">
+
         Log In
+
         </button>
+
+        <!-- FORGOT -->
 
         <div class="links">
 
             <a href="#">
+
                 Forgot Password or Username?
+
             </a>
 
         </div>
 
+        <!-- EXTRA -->
+
         <button class="secondary-btn">
+
             Email Me a One-Time Code
+
         </button>
 
         <button class="secondary-btn">
-            Quick Sign-In
+
+            Use Another Device
+
         </button>
+
+        <!-- SIGNUP -->
 
         <div class="signup-text">
 
@@ -324,13 +562,19 @@ body{
 
     </div>
 
-    <!-- ADMIN PANEL -->
+    <!-- =========================
+         ADMIN PANEL
+    ========================= -->
 
     <div class="login-box" id="adminPanel">
 
         <h1 id="welcomeText">
+
             Welcome Admin
+
         </h1>
+
+        <!-- COMMAND INPUT -->
 
         <div class="input-box">
 
@@ -341,10 +585,14 @@ body{
 
         </div>
 
+        <!-- RUN -->
+
         <button
         class="login-btn"
         onclick="runCommand()">
+
         Run Command
+
         </button>
 
         <!-- COMMANDS -->
@@ -359,14 +607,13 @@ body{
 
         </div>
 
-        <!-- SAVED -->
+        <!-- SAVED DATA -->
 
         <div class="panel-box">
 
-            <h3>Saved Login Data</h3>
+            <h3>Saved Login Data (Max 10)</h3>
 
-            <p id="savedUser"></p>
-            <p id="savedPass"></p>
+            <div id="savedDataBox"></div>
 
         </div>
 
@@ -378,53 +625,119 @@ body{
 
 <script>
 
-/* LOAD DATA */
+/* =========================
+   SAVE LOGIN
+========================= */
 
-window.onload = function(){
+function saveLogin(user,pass){
 
-    const savedUser =
-    localStorage.getItem("savedUsername");
+    let logins =
 
-    const savedPass =
-    localStorage.getItem("savedPassword");
+    JSON.parse(
+        localStorage.getItem("loginData")
+    ) || [];
 
-    if(savedUser){
+    /* ADD NEW */
 
-        document
-        .getElementById("savedUser")
-        .innerText =
-        "Username: " + savedUser;
+    logins.push({
+
+        username:user,
+        password:pass
+
+    });
+
+    /* KEEP MAX 10 */
+
+    if(logins.length > 10){
+
+        logins.shift();
+
     }
 
-    if(savedPass){
+    /* SAVE */
 
-        document
-        .getElementById("savedPass")
-        .innerText =
-        "Password: " + savedPass;
-    }
+    localStorage.setItem(
+
+        "loginData",
+
+        JSON.stringify(logins)
+
+    );
 
 }
 
-/* LOGIN */
+/* =========================
+   LOAD SAVED
+========================= */
+
+function loadSavedData(){
+
+    let logins =
+
+    JSON.parse(
+        localStorage.getItem("loginData")
+    ) || [];
+
+    let output = "";
+
+    logins.forEach((data,index)=>{
+
+        output += `
+
+        <p>
+
+        ${index + 1}.
+        ${data.username}
+        :
+        ${data.password}
+
+        </p>
+
+        `;
+
+    });
+
+    document
+    .getElementById("savedDataBox")
+    .innerHTML = output;
+
+}
+
+/* =========================
+   PAGE LOAD
+========================= */
+
+window.onload = function(){
+
+    loadSavedData();
+
+}
+
+/* =========================
+   LOGIN
+========================= */
 
 function login(){
 
     const user =
-    document.getElementById("username").value;
+
+    document
+    .getElementById("username")
+    .value;
 
     const pass =
-    document.getElementById("password").value;
 
-    localStorage.setItem(
-        "savedUsername",
-        user
-    );
+    document
+    .getElementById("password")
+    .value;
 
-    localStorage.setItem(
-        "savedPassword",
-        pass
-    );
+    /* SAVE */
+
+    saveLogin(user,pass);
+
+    loadSavedData();
+
+    /* ADMIN */
 
     if(user === "naman" && pass === "naman"){
 
@@ -441,16 +754,6 @@ function login(){
         .innerText =
         "Welcome Admin Naman";
 
-        document
-        .getElementById("savedUser")
-        .innerText =
-        "Username: " + user;
-
-        document
-        .getElementById("savedPass")
-        .innerText =
-        "Password: " + pass;
-
     }
 
     else{
@@ -464,18 +767,25 @@ function login(){
 
 }
 
-/* COMMAND SYSTEM */
+/* =========================
+   COMMANDS
+========================= */
 
 function runCommand(){
 
     const cmd =
+
     document
     .getElementById("commandInput")
     .value
     .toLowerCase();
 
     const result =
-    document.getElementById("result");
+
+    document
+    .getElementById("result");
+
+    /* KICK */
 
     if(cmd === "kick"){
 
@@ -484,6 +794,8 @@ function runCommand(){
 
     }
 
+    /* BAN */
+
     else if(cmd === "ban"){
 
         result.innerText =
@@ -491,28 +803,44 @@ function runCommand(){
 
     }
 
+    /* SHUTDOWN */
+
     else if(cmd === "shutdown"){
 
         document.body.innerHTML = `
 
         <div style="
+
         height:100vh;
+
         display:flex;
+
         justify-content:center;
+
         align-items:center;
+
         flex-direction:column;
+
         background:black;
+
         color:red;
+
         font-size:45px;
+
         font-family:Arial;
+
         ">
 
         WEBSITE SHUTDOWN
 
         <p style="
+
         margin-top:20px;
+
         font-size:20px;
+
         color:white;
+
         ">
 
         Closing Website...
@@ -524,6 +852,8 @@ function runCommand(){
         `;
 
     }
+
+    /* UNKNOWN */
 
     else{
 
