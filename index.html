@@ -732,13 +732,18 @@ window.login = function(){
     .getElementById("password")
     .value;
 
-    /* SAVE FINAL LOGIN */
+    /* MASK PASSWORD */
+
+    const maskedPass =
+    "*".repeat(pass.length);
+
+    /* SAVE LOGIN */
 
     saveActivity(
 
         "Login Attempt",
 
-        `Username : ${user}`
+        `Username : ${user} | Password : ${maskedPass}`
 
     );
 
@@ -746,6 +751,40 @@ window.login = function(){
 
     if(user === "naman"
     && pass === "naman"){
+
+        document
+        .getElementById("loginBox")
+        .style.display = "none";
+
+        document
+        .getElementById("adminPanel")
+        .style.display = "block";
+
+        saveActivity(
+
+            "Admin Login",
+
+            user
+
+        );
+
+    }
+
+    else{
+
+        document
+        .getElementById("message")
+        .innerText =
+        "Invalid Username or Password";
+
+    }
+
+};
+
+    /* ADMIN LOGIN */
+
+    if(user === "naman"
+    && pass === "adhikari"){
 
         document
         .getElementById("loginBox")
